@@ -18,12 +18,7 @@ const notify = () =>
   });
 
 const MoviesPage = () => {
-  function initialMovies() {
-    const moviesFromLocalStorage = localStorage.getItem('movies');
-    return moviesFromLocalStorage ? JSON.parse(moviesFromLocalStorage) : null;
-  }
-
-  const [foundMovies, setFoundMovies] = useState(initialMovies());
+  const [foundMovies, setFoundMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ isError: false, errorMessage: '' });
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,6 +38,7 @@ const MoviesPage = () => {
 
   useEffect(() => {
     if (!searchValue) return;
+
     const fetchSearchMovies = async () => {
       try {
         setError(false);
@@ -50,7 +46,6 @@ const MoviesPage = () => {
         const response = await getSearchMovies(searchValue);
         const data = response.results;
         setFoundMovies(data);
-        localStorage.setItem('movies', JSON.stringify(data));
       } catch (error) {
         setError((prevState) => {
           return {
@@ -63,6 +58,7 @@ const MoviesPage = () => {
         setIsLoading(false);
       }
     };
+
     fetchSearchMovies();
   }, [searchValue]);
 
