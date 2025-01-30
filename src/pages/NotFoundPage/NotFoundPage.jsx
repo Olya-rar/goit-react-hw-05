@@ -1,5 +1,5 @@
-import imgBg from '../../../public/img/not-found-page-bg.jpg';
-import imgBg2x from '../../../public/img/not-found-page-bg@2x.jpg';
+import imgBg from '../../../public/img/not-found-page_1x.jpg';
+import imgBg2x from '../../../public/img/not-found-page_2x.jpg';
 
 import css from './NotFoundPage.module.css';
 
